@@ -4,6 +4,7 @@
 #include <cstring>
 #include "SDL/SDL.h"
 #include "pe_entityhandler.h"
+#include "fileutils.h"
 namespace PE
 {
 EntityHandler::EntityHandler():entityId(0)
@@ -36,62 +37,41 @@ Entity* EntityHandler::getEntity(int id)
     }
 int EntityHandler::save(const std::string &filename)
     {
-    std::ofstream file(filename.c_str(), std::ios_base::out | std::ios_base::binary);
-    if(file.fail())
-        {
-        file.close();
-        return 0;
-        }
-    Entity e;
-    Data data;
+    /*Entity e;
+    Data data[2];
 
-    //KUSEE ehkä->
-    file.seekp(0);
     for(int i = 0; i < entities.size(); ++i)
         {
         e = entities[i];
-        strcpy(data.name, e.name.c_str());
-        data.id = e.id;
-        data.posX = e.position.x;
-        data.posY = e.position.y;
-        data.dirX = e.direction.x;
-        data.dirY = e.direction.y;
-        data.velX = e.velocity.x;
-        data.velY = e.velocity.y;
-        data.speed = e.speed;
-        file.write((char*)&data, sizeof(data));
+        strcpy(data[i].name, e.name.c_str());
+        data[i].id = e.id;
+        data[i].posX = e.position.x;
+        data[i].posY = e.position.y;
+        data[i].dirX = e.direction.x;
+        data[i].dirY = e.direction.y;
+        data[i].velX = e.velocity.x;
+        data[i].velY = e.velocity.y;
+        data[i].speed = e.speed;
         }
-    if(file.fail())
-        {
-        file.close();
-        return 0;
-        }
-    file.close();
+    if(!fileutils::saveBinary(filename, (char *) data, sizeof(data))) return 0;*/
+    if(!fileutils::saveBinary(filename, (char *)entities.data(), entities.size() * sizeof(Entity))) return 0;
     return 1;
     }
 int EntityHandler::load(const std::string &filename)
     {
-    std::ifstream file(filename.c_str(), std::ios_base::in | std::ios_base::binary);
-    if(file.fail())
-        {
-        file.close();
-        return 0;
-        }
-    Data data;
+    Data data[2];
     Entity e;
     Player player;
     Enemy enemy;
 
-    file.seekg(0);
-    //KUSEE->
-    while(!file.eof())
+    fileutils::loadBinary(filename, (char *) data, sizeof(data));
+    for(int i = 0; i < 2; ++i)
         {
-        file.read((char*)&data, sizeof(data));
-        if(data.name == "player")
+        if(data[i].name == "player")
             {
             entities.push_back(player);
             }
-        else if(data.name == "enemy")
+        else if(data[i].name == "enemy")
             {
             entities.push_back(enemy);
             }
@@ -100,24 +80,18 @@ int EntityHandler::load(const std::string &filename)
             entities.push_back(e);
             }
         e = entities.back();
-        e.name = std::string(data.name);
-        e.id = data.id;
-        e.position.x = data.posX;
-        e.position.y = data.posY;
-        e.direction.x = data.dirX;
-        e.direction.y = data.dirY;
-        e.velocity.x = data.velX;
-        e.velocity.y = data.velY;
-        e.speed = data.speed;
+        e.name = std::string(data[i].name);
+        e.id = data[i].id;
+        e.position.x = data[i].posX;
+        e.position.y = data[i].posY;
+        e.direction.x = data[i].dirX;
+        e.direction.y = data[i].dirY;
+        e.velocity.x = data[i].velX;
+        e.velocity.y = data[i].velY;
+        e.speed = data[i].speed;
 
         if(e.id > entityId) entityId = e.id;
         }
-    if(file.fail())
-        {
-        file.close();
-        return 0;
-        }
-    file.close();
     return 1;
     }
 void EntityHandler::process(double time)

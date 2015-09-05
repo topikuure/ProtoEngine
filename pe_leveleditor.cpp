@@ -6,7 +6,6 @@
 #include "pe_entityhandler.h"
 #include "pe_entityselector.h"
 #include "pe_level.h"
-#include "drawutils.h"
 int main(int argc, char **argv)
     {
     SDL_Init(0);
@@ -49,7 +48,7 @@ int main(int argc, char **argv)
         output.render(ids);
         ids.clear();
         }
-    if(!level.save("level1")) goto exit;
+    //if(!level.save("level1")) goto exit;
     exit:
     SDL_Quit();
     return 0;

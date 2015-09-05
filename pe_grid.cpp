@@ -48,16 +48,16 @@ void Grid::render(SDL_Surface *screen)
         {
         for(y = rect.y; y < rect.y + rect.h; ++y)
             {
-            drawPixel(screen, x - 1, y, color);
-            drawPixel(screen, x, y, color);
+            drawutils::drawPixel(screen, x - 1, y, color);
+            drawutils::drawPixel(screen, x, y, color);
             }
         }
     for(y = rect.y + cellHeight; y <= rect.y + rect.h - cellHeight; y += cellHeight)
         {
         for(x = rect.x; x < rect.x + rect.w; ++x)
             {
-            drawPixel(screen, x, y - 1, color);
-            drawPixel(screen, x, y, color);
+            drawutils::drawPixel(screen, x, y - 1, color);
+            drawutils::drawPixel(screen, x, y, color);
             }
         }
     SDL_UnlockSurface(screen);
