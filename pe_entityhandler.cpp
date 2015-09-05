@@ -37,61 +37,12 @@ Entity* EntityHandler::getEntity(int id)
     }
 int EntityHandler::save(const std::string &filename)
     {
-    /*Entity e;
-    Data data[2];
-
-    for(int i = 0; i < entities.size(); ++i)
-        {
-        e = entities[i];
-        strcpy(data[i].name, e.name.c_str());
-        data[i].id = e.id;
-        data[i].posX = e.position.x;
-        data[i].posY = e.position.y;
-        data[i].dirX = e.direction.x;
-        data[i].dirY = e.direction.y;
-        data[i].velX = e.velocity.x;
-        data[i].velY = e.velocity.y;
-        data[i].speed = e.speed;
-        }
-    if(!fileutils::saveBinary(filename, (char *) data, sizeof(data))) return 0;*/
     if(!fileutils::saveBinary(filename, (char *)entities.data(), entities.size() * sizeof(Entity))) return 0;
     return 1;
     }
 int EntityHandler::load(const std::string &filename)
     {
-    Data data[2];
-    Entity e;
-    Player player;
-    Enemy enemy;
-
-    fileutils::loadBinary(filename, (char *) data, sizeof(data));
-    for(int i = 0; i < 2; ++i)
-        {
-        if(data[i].name == "player")
-            {
-            entities.push_back(player);
-            }
-        else if(data[i].name == "enemy")
-            {
-            entities.push_back(enemy);
-            }
-        else
-            {
-            entities.push_back(e);
-            }
-        e = entities.back();
-        e.name = std::string(data[i].name);
-        e.id = data[i].id;
-        e.position.x = data[i].posX;
-        e.position.y = data[i].posY;
-        e.direction.x = data[i].dirX;
-        e.direction.y = data[i].dirY;
-        e.velocity.x = data[i].velX;
-        e.velocity.y = data[i].velY;
-        e.speed = data[i].speed;
-
-        if(e.id > entityId) entityId = e.id;
-        }
+    if(!fileutils::loadBinary(filename, (char *), )) return 0;
     return 1;
     }
 void EntityHandler::process(double time)
