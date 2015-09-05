@@ -36,7 +36,7 @@ int main(int argc, char **argv)
     entitySelector.addEntity(player);
     entitySelector.addEntity(enemy);
 
-    if(!level.load("level1")) goto exit;
+    //if(!level.load("level1")) goto exit;
 
     while(input.handle())
         {
@@ -48,7 +48,7 @@ int main(int argc, char **argv)
         output.render(ids);
         ids.clear();
         }
-    //if(!level.save("level1")) goto exit;
+    if(!level.save("level1")) goto exit;
     exit:
     SDL_Quit();
     return 0;

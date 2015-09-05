@@ -42,7 +42,7 @@ int EntityHandler::save(const std::string &filename)
     }
 int EntityHandler::load(const std::string &filename)
     {
-    if(!fileutils::loadBinary(filename, (char *), )) return 0;
+    //if(!fileutils::loadBinary(filename, (char *))) return 0;
     return 1;
     }
 void EntityHandler::process(double time)
