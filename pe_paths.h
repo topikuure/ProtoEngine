@@ -3,7 +3,7 @@
 #include <string>
 namespace PE_Paths
 {
-std::string root = std::string("C:\\Ohjelmointi\\Cpp\\ProtoEngine\\");
+std::string root = std::string("C:\\Users\\Topi\\Documents\\Ohjelmointi\\ProtoEngine\\");
 std::string sprites = std::string("sprites\\");
 std::string levels = std::string("levels\\");
 }

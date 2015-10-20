@@ -1,5 +1,5 @@
 #include <vector>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_output.h"
 #include "pe_entityhandler.h"
 #include "pe_entityselector.h"
@@ -8,22 +8,27 @@ namespace PE
 {
 Output::Output(int width, int height, EntityHandler &eHandler):entityHandler(eHandler)
     {
-    screen = SDL_SetVideoMode(width, height, 0, SDL_SWSURFACE);
+    window = SDL_CreateWindow("Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
+    renderer = SDL_CreateRenderer(window, -1, 0);
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     }
 Output::~Output()
     {
+    SDL_DestroyRenderer(renderer);
+    SDL_DestroyWindow(window);
     }
 void Output::render()
     {
     renderBackground();
-    entityHandler.render(screen);
-    SDL_Flip(screen);
+    entityHandler.render();
+    SDL_RenderPresent(renderer);
     }
 void Output::render(const std::vector<int> &ids)
     {
+    SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     renderBackground();
-    entityHandler.render(screen, ids);
-    SDL_Flip(screen);
+    entityHandler.render(ids);
+    SDL_RenderPresent(renderer);
     }
 void Output::renderBackground()
     {
@@ -34,13 +39,13 @@ LevelEditorOutput::LevelEditorOutput(EntitySelector &entitySelector, Grid &grid,
     }
 void LevelEditorOutput::renderBackground()
     {
-    SDL_FillRect(screen, &screen->clip_rect, SDL_MapRGB(screen->format, 0, 0, 0));
+    SDL_RenderClear(renderer);
 
     std::vector<int> ids;
     ids.push_back(entitySelector.selectedEntity->id);
-    entitySelector.entityHandler.render(screen, ids);
+    entitySelector.entityHandler.render(ids);
     ids.clear();
 
-    grid.render(screen);
+    grid.render(renderer);
     }
 }

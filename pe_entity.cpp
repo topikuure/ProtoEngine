@@ -1,3 +1,4 @@
+#include "SDL2/SDL.h"
 #include "pe_paths.h"
 #include "pe_entity.h"
 #include "vector2d.h"
@@ -11,16 +12,15 @@ Entity::Entity(double x, double y, std::string name):
 Entity::~Entity()
     {
     }
-int Entity::loadSprite()
+int Entity::loadSprite(SDL_Renderer *renderer)
     {
-    if(sprite.load(PE_Paths::root + PE_Paths::sprites + this->name + ".bmp")) return 1;
-    if(sprite.load(PE_Paths::root + PE_Paths::sprites + "default_entity.bmp")) return 1;
+    if(sprite.load(renderer, PE_Paths::root + PE_Paths::sprites + this->name + ".bmp")) return 1;
     return 0;
     }
 void Entity::move(double dirX, double dirY)
     {
-    this->velocity.x += dirX;
-    this->velocity.y += dirY;
+    velocity.x += dirX;
+    velocity.y += dirY;
 
     //feikkinormalisaatio-> Kusee jos painaa vastakkaisiin suuntiin
     if(velocity.x > 0)
@@ -35,29 +35,30 @@ void Entity::move(double dirX, double dirY)
         }
     //<-feikkinormalisaatio
 
-    this->velocity *= speed;
+    velocity *= speed;
     }
 void Entity::stop()
     {
-    this->velocity.x = 0.0;
-    this->velocity.y = 0.0;
+    velocity.x = 0.0;
+    velocity.y = 0.0;
     }
 void Entity::process(double time)
     {
-    this->position += this->velocity * time;
+    position += velocity * time;
     }
-void Entity::render(SDL_Surface *screen)
+//renderer?
+void Entity::render()
     {
-    this->sprite.blit(screen, this->position.x - this->sprite.rect.w / 2, this->position.y - this->sprite.rect.h / 2);
+    sprite.blit(position.x - sprite.rect.w / 2, position.y - sprite.rect.h / 2);
     }
 //Player
 Player::Player(double x, double y):Entity(x, y, "player")
     {
-    this->speed = 60.0;
+    speed = 60.0;
     }
 //Enemy
 Enemy::Enemy(double x, double y):Entity(x, y, "enemy")
     {
-    this->speed = 50.0;
+    speed = 50.0;
     }
 }

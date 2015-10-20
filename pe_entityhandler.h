@@ -35,8 +35,8 @@ class EntityHandler
     int load(const std::string &filename);
 
     void process(double time);
-    void render(SDL_Surface *screen);
-    void render(SDL_Surface *screen, const std::vector<int> &ids);
+    void render();
+    void render(const std::vector<int> &ids);
     };
 }
 #endif

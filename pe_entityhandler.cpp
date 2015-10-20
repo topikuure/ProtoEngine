@@ -2,7 +2,7 @@
 #include <fstream>
 #include <string>
 #include <cstring>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_entityhandler.h"
 #include "fileutils.h"
 namespace PE
@@ -52,20 +52,20 @@ void EntityHandler::process(double time)
         entities[i].process(time);
         }
     }
-void EntityHandler::render(SDL_Surface *screen)
+void EntityHandler::render()
     {
     for(int i = 0; i < this->entities.size(); ++i)
         {
-        entities[i].render(screen);
+        entities[i].render();
         }
     }
-void EntityHandler::render(SDL_Surface *screen, const std::vector<int> &ids)
+void EntityHandler::render(const std::vector<int> &ids)
     {
     for(int i = 0; i < ids.size(); ++i)
         {
         for(int j = 0; j < this->entities.size(); ++j)
             {
-            if(this->entities[j].id == ids[i]) this->entities[j].render(screen);
+            if(this->entities[j].id == ids[i]) this->entities[j].render();
             }
         }
     }

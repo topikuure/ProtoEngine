@@ -1,8 +1,11 @@
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_input.h"
 #include "pe_output.h"
 #include "pe_entity.h"
 #include "pe_entityhandler.h"
+/*
+pe_paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
+*/
 int main(int argc, char **argv)
     {
     SDL_Init(0);
@@ -13,7 +16,7 @@ int main(int argc, char **argv)
     PE::Input input;
 
     PE::Player player(200.0, 200.0);
-    if(!player.loadSprite()) goto exit;
+    if(!player.loadSprite(output.renderer)) goto exit;
     entityHandler.addEntity(player);
 
     start = SDL_GetTicks();

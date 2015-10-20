@@ -1,7 +1,7 @@
 #ifndef PE_OUTPUT_INCLUDED
  #define PE_OUTPUT_INCLUDED
 #include <vector>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_entityhandler.h"
 #include "pe_entityselector.h"
 #include "pe_grid.h"
@@ -10,7 +10,8 @@ namespace PE
 class Output
     {
     public:
-    SDL_Surface *screen;
+    SDL_Window *window;
+    SDL_Renderer *renderer;
     EntityHandler &entityHandler;
 
     Output(int width, int height, EntityHandler &eHandler);

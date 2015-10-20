@@ -1,11 +1,14 @@
 #include <vector>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_input.h"
 #include "pe_output.h"
 #include "pe_entity.h"
 #include "pe_entityhandler.h"
 #include "pe_entityselector.h"
 #include "pe_level.h"
+/*
+pe_paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
+*/
 int main(int argc, char **argv)
     {
     SDL_Init(0);
@@ -29,8 +32,8 @@ int main(int argc, char **argv)
 
     PE::Player player;
     PE::Enemy enemy;
-    if(!player.loadSprite()) goto exit;
-    if(!enemy.loadSprite()) goto exit;
+    if(!player.loadSprite(output.renderer)) goto exit;
+    if(!enemy.loadSprite(output.renderer)) goto exit;
     player.position = Vector2D(player.position.x + player.sprite.rect.w / 2, player.position.y + player.sprite.rect.h / 2);
     enemy.position = Vector2D(enemy.position.x + enemy.sprite.rect.w / 2, enemy.position.y + enemy.sprite.rect.h / 2);
     entitySelector.addEntity(player);
@@ -48,7 +51,7 @@ int main(int argc, char **argv)
         output.render(ids);
         ids.clear();
         }
-    if(!level.save("level1")) goto exit;
+    //if(!level.save("level1")) goto exit;
     exit:
     SDL_Quit();
     return 0;

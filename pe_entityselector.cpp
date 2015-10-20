@@ -1,5 +1,5 @@
 #include <vector>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_entityselector.h"
 #include "vector2d.h"
 #include "pe_entityhandler.h"

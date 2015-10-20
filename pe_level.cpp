@@ -1,4 +1,4 @@
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_level.h"
 #include <string>
 #include <fstream>

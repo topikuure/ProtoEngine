@@ -1,6 +1,6 @@
-#ifndef PE_ENTITY_INCLUDED
+﻿#ifndef PE_ENTITY_INCLUDED
  #define PE_ENTITY_INCLUDED
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "vector2d.h"
 #include "pe_sprite.h"
 #include <string>
@@ -21,11 +21,11 @@ class Entity
     Entity(double x = 0.0, double y = 0.0, std::string name = "default_entity");
     ~Entity();
 
-    int loadSprite();
+    int loadSprite(SDL_Renderer *renderer);
     void move(double dirX, double dirY);
     void stop();
     void process(double time);
-    void render(SDL_Surface *screen);
+    void render();
     };
 class Player: public Entity
     {

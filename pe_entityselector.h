@@ -1,7 +1,7 @@
 #ifndef ENTITY_SELECTOR_INCLUDED
  #define ENTITY_SELECTOR_INCLUDED
 #include <vector>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "vector2d.h"
 #include "pe_entityhandler.h"
 #include "pe_entity.h"

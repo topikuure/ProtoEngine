@@ -1,7 +1,6 @@
 #include <stdexcept>
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_grid.h"
-#include "drawutils.h"
 namespace PE
 {
 Grid::Grid(const SDL_Rect &rect, int cellWidth, int cellHeight, int screenWidth, int screenHeight)
@@ -39,27 +38,26 @@ Vector2D Grid::center(const Vector2D &point)
     centered.y = (double)y - (double)cellHeight / 2;
     return centered;
     }
-void Grid::render(SDL_Surface *screen)
+void Grid::render(SDL_Renderer *renderer)
     {
-    color = SDL_MapRGB(screen->format, 50, 120, 200);
-    SDL_LockSurface(screen);
+    SDL_SetRenderDrawColor(renderer, 50, 120, 200, 0);
+
     int x, y;
     for(x = rect.x + cellWidth; x <= rect.x + rect.w - cellWidth; x += cellWidth)
         {
         for(y = rect.y; y < rect.y + rect.h; ++y)
             {
-            drawutils::drawPixel(screen, x - 1, y, color);
-            drawutils::drawPixel(screen, x, y, color);
+            SDL_RenderDrawPoint(renderer, x - 1, y);
+            SDL_RenderDrawPoint(renderer, x, y);
             }
         }
     for(y = rect.y + cellHeight; y <= rect.y + rect.h - cellHeight; y += cellHeight)
         {
         for(x = rect.x; x < rect.x + rect.w; ++x)
             {
-            drawutils::drawPixel(screen, x, y - 1, color);
-            drawutils::drawPixel(screen, x, y, color);
+            SDL_RenderDrawPoint(renderer, x, y - 1);
+            SDL_RenderDrawPoint(renderer, x, y);
             }
         }
-    SDL_UnlockSurface(screen);
     }
 }

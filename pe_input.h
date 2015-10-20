@@ -1,6 +1,6 @@
 #ifndef PE_INPUT_INCLUDED
  #define PE_INPUT_INCLUDED
-#include "SDL/SDL.h"
+#include "SDL2/SDL.h"
 #include "pe_entity.h"
 #include "pe_entityselector.h"
 #include "pe_level.h"
