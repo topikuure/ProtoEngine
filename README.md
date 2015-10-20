@@ -1,3 +1,3 @@
-# ProtoEngine
+﻿# ProtoEngine
 2D pelimoottori
-Käyttää SDL:llää
+Käyttää SDL2:ta
