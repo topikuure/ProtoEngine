@@ -17,10 +17,10 @@ class Grid
 
     Grid(const SDL_Rect &rect, int cellWidth, int cellHeight, int screenWidth, int screenHeight);
 
-    Vector2D convertCoordinate(const Coordinate &gridCoordinate);//Testaa
-    Coordinate convertCoordinate(const Vector2D &screenCoordinate);//Implementoi
-    Vector2D center(const Vector2D &vector);
-    void render(SDL_Renderer *renderer);
+    Vector2D convertCoordinate(const Coordinate &gridCoordinate);
+    Coordinate convertCoordinate(const Vector2D &screenCoordinate);//Ei implementoitu
+	int center(Vector2D &point);
+    void render(SDL_Renderer *r);
     };
 }
 #endif

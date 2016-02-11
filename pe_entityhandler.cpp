@@ -2,9 +2,11 @@
 #include <fstream>
 #include <string>
 #include <cstring>
+#include <cstdlib>
 #include "SDL2/SDL.h"
 #include "pe_entityhandler.h"
-#include "fileutils.h"
+#include "pe_entity.h"
+#include <iostream>
 namespace PE
 {
 EntityHandler::EntityHandler():entityId(0)
@@ -27,29 +29,43 @@ void EntityHandler::removeEntity(int id)
             entities.erase(entities.begin() + i);
         }
     }
-Entity* EntityHandler::getEntity(int id)
+Entity& EntityHandler::getEntity(int id)
     {
     for(unsigned int i = 0; i < entities.size(); ++i)
         {
-        if(entities[i].id == id) return &entities[i];
+        if(entities[i].id == id) return entities[i];
         }
-    return NULL;
     }
+void EntityHandler::clearEntities()
+    {
+    entities.clear();
+    entityId = 0;
+    }
+//Ei implementoitu
 int EntityHandler::save(const std::string &filename)
     {
-    if(!fileutils::saveBinary(filename, (char *)entities.data(), entities.size() * sizeof(Entity))) return 0;
-    return 1;
+    return 0;
     }
-int EntityHandler::load(const std::string &filename)
+//Ei implementoitu
+int EntityHandler::load(const std::string &filename, SDL_Renderer *r)
     {
-    //if(!fileutils::loadBinary(filename, (char *))) return 0;
-    return 1;
+    return 0;
     }
 void EntityHandler::process(double time)
     {
     for(int i = 0; i < entities.size(); ++i)
         {
         entities[i].process(time);
+        for(int j = 0; j < entities.size(); ++j)
+            {
+            if(i != j)
+                {
+                if(entities[i].boundingBox != NULL && entities[j].boundingBox != NULL)
+                    {
+                    if(entities[i].detectCollision(entities[j])) entities[i].handleCollision(entities[j]);
+                    }
+                }
+            }
         }
     }
 void EntityHandler::render()

@@ -7,23 +7,22 @@ Grid::Grid(const SDL_Rect &rect, int cellWidth, int cellHeight, int screenWidth,
     :rect(rect), cellWidth(cellWidth), cellHeight(cellHeight), screenWidth(screenWidth), screenHeight(screenHeight)
     {
     }
-//Testaa
 Vector2D Grid::convertCoordinate(const Coordinate &gridCoordinate)
     {
     Vector2D coordinate(gridCoordinate.x * cellWidth, gridCoordinate.y * cellHeight);
     return coordinate;
     }
-//Implementoi
+//Ei implementoitu
 Grid::Coordinate Grid::convertCoordinate(const Vector2D &screenCoordinate)
     {
     Coordinate coordinate;
     return coordinate;
     }
-Vector2D Grid::center(const Vector2D &point)
-    {
-    Vector2D centered;
+int Grid::center(Vector2D &point)
+	{
+	Vector2D centered;
     if(point.x < rect.x || point.x > rect.w + rect.x || point.y < rect.y || point.y > rect.h + rect.y)
-        throw std::invalid_argument("point not inside bounds");
+        return 0;
 
     int x = rect.x, y = rect.y;
     while(x < point.x)
@@ -36,27 +35,28 @@ Vector2D Grid::center(const Vector2D &point)
         y += cellHeight;
         }
     centered.y = (double)y - (double)cellHeight / 2;
-    return centered;
+	point = centered;
+    return 1;
     }
-void Grid::render(SDL_Renderer *renderer)
+void Grid::render(SDL_Renderer *r)
     {
-    SDL_SetRenderDrawColor(renderer, 50, 120, 200, 0);
+    SDL_SetRenderDrawColor(r, 50, 120, 200, 0);
 
     int x, y;
     for(x = rect.x + cellWidth; x <= rect.x + rect.w - cellWidth; x += cellWidth)
         {
         for(y = rect.y; y < rect.y + rect.h; ++y)
             {
-            SDL_RenderDrawPoint(renderer, x - 1, y);
-            SDL_RenderDrawPoint(renderer, x, y);
+            SDL_RenderDrawPoint(r, x - 1, y);
+            SDL_RenderDrawPoint(r, x, y);
             }
         }
     for(y = rect.y + cellHeight; y <= rect.y + rect.h - cellHeight; y += cellHeight)
         {
         for(x = rect.x; x < rect.x + rect.w; ++x)
             {
-            SDL_RenderDrawPoint(renderer, x, y - 1);
-            SDL_RenderDrawPoint(renderer, x, y);
+            SDL_RenderDrawPoint(r, x, y - 1);
+            SDL_RenderDrawPoint(r, x, y);
             }
         }
     }

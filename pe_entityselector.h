@@ -17,7 +17,7 @@ class EntitySelector
     int selectedId;
 
     EntitySelector(double x = 0.0, double y = 0.0);
-    Entity& addEntity(const Entity &entity);
+    Entity& addEntity(const Entity &e);
     void browse(int direction);
     };
 }

@@ -9,22 +9,21 @@ namespace PE
 EntitySelector::EntitySelector(double x, double y):position(Vector2D(x, y)), selectedEntity(NULL), selectedId(0)
     {
     }
-Entity& EntitySelector::addEntity(const Entity &entity)
+Entity& EntitySelector::addEntity(const Entity &e)
     {
-    this->selectedEntity = &(this->entityHandler.addEntity(entity));
-    this->ids.push_back(this->selectedEntity->id);
-    this->selectedId = this->ids.back();
-    return *this->selectedEntity;
+    selectedEntity = &(entityHandler.addEntity(e));
+    ids.push_back(selectedEntity->id);
+    selectedId = selectedEntity->id;
+    return *selectedEntity;
     }
 void EntitySelector::browse(int direction)
     {
-    if(direction > 0) ++this->selectedId;
-    else if(direction < 0) --this->selectedId;
+    if(direction > 0) ++selectedId;
+    else if(direction < 0) --selectedId;
 
-    if(this->selectedId < 0) this->selectedId = ids.size() - 1;
-    else if(this->selectedId >= ids.size()) this->selectedId = 0;
+    if(selectedId < 0) selectedId = ids.size() - 1;
+    else if(selectedId >= ids.size()) selectedId = 0;
 
-    if(this->entityHandler.getEntity(ids[selectedId]) != NULL)
-        this->selectedEntity = this->entityHandler.getEntity(ids[selectedId]);
+    selectedEntity = &(entityHandler.getEntity(ids[selectedId]));
     }
 }

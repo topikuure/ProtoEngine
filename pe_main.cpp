@@ -6,6 +6,10 @@
 /*
 pe_paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
 */
+void showErrorMessage(const char *message)
+    {
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Error", message, NULL);
+    }
 int main(int argc, char **argv)
     {
     SDL_Init(0);
@@ -13,14 +17,27 @@ int main(int argc, char **argv)
 
     PE::EntityHandler entityHandler;
     PE::Output output(800, 600, entityHandler);
-    PE::Input input;
 
-    PE::Player player(200.0, 200.0);
-    if(!player.loadSprite(output.renderer)) goto exit;
-    entityHandler.addEntity(player);
+	int playerId = (entityHandler.addEntity(PE::Player(200, 200))).id;
+    int aiId = (entityHandler.addEntity(PE::Ai(300, 300))).id;
+    PE::Entity &player = entityHandler.getEntity(playerId);
+    PE::Entity &ai = entityHandler.getEntity(aiId);
+	PE::GameInput input(player);
+	if(!player.loadSprite(output.renderer))
+		{
+        showErrorMessage("player.loadSprite() failed");
+        goto exit;
+        }
+    player.loadBoundingBox(player.sprite->rect.w, player.sprite->rect.h);
+    if(!ai.loadSprite(output.renderer))
+		{
+        showErrorMessage("ai.loadSprite() failed");
+        goto exit;
+        }
+    ai.loadBoundingBox(ai.sprite->rect.w, ai.sprite->rect.h);
 
     start = SDL_GetTicks();
-    while(input.handle(entityHandler.entities[0]))
+    while(input.handle())
         {
         end = SDL_GetTicks();
         entityHandler.process((double)(end - start) / 1000.0);

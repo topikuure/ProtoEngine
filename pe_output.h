@@ -10,6 +10,9 @@ namespace PE
 class Output
     {
     public:
+    int screenWidth;
+    int screenHeight;
+
     SDL_Window *window;
     SDL_Renderer *renderer;
     EntityHandler &entityHandler;
@@ -23,7 +26,7 @@ class Output
 class GameOutput: public Output
     {
     public:
-    void renderBackground(){};//Implementoi
+    void renderBackground(){};
     };
 class LevelEditorOutput: public Output
     {

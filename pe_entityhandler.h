@@ -6,19 +6,9 @@
 #include "pe_entity.h"
 namespace PE
 {
-/*
-entities ei pidä sisältöään järjestyksessä, joten
-entityn tunnistaa sen id:llä eikä indeksillä.
-*/
 class EntityHandler
     {
     private:
-    struct Data
-        {
-        char name[20];
-        int id;
-        double posX, posY, dirX, dirY, velX, velY, speed;
-        };
     int entityId;
 
     public:
@@ -29,10 +19,11 @@ class EntityHandler
 
     Entity& addEntity(const Entity &e);
     void removeEntity(int id);
-    Entity* getEntity(int id);
+    Entity& getEntity(int id);
+    void clearEntities();
 
-    int save(const std::string &filename);
-    int load(const std::string &filename);
+    int save(const std::string &filename);//Ei implementoitu
+    int load(const std::string &filename, SDL_Renderer *r);//Ei implementoitu
 
     void process(double time);
     void render();

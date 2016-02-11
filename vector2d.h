@@ -1,7 +1,9 @@
+//Tee tästä kirjasto
 #ifndef VECTOR2D_INCLUDED
  #define VECTOR2D_INCLUDED
 #define PI 3.1415926535897932
-#define RAD(degrees) ( (degrees) * PI / 180 )
+#define DEGREES_TO_RADIANS(degrees) ( (degrees) * PI / 180.0 )
+#define RADIANS_TO_DEGREES(radians) ( (radians) * 180 / PI )
 struct Vector2D
     {
     double x, y;

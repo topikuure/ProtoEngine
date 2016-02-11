@@ -8,6 +8,8 @@ namespace PE
 {
 Output::Output(int width, int height, EntityHandler &eHandler):entityHandler(eHandler)
     {
+    screenWidth = width;
+    screenHeight = height;
     window = SDL_CreateWindow("Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, width, height, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
     SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
@@ -19,6 +21,7 @@ Output::~Output()
     }
 void Output::render()
     {
+	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
     renderBackground();
     entityHandler.render();
     SDL_RenderPresent(renderer);
@@ -32,6 +35,8 @@ void Output::render(const std::vector<int> &ids)
     }
 void Output::renderBackground()
     {
+    SDL_Rect screenRect = {.x = 0, .y = 0, .w = screenWidth, .h = screenHeight};
+    SDL_RenderFillRect(renderer, &screenRect);
     }
 LevelEditorOutput::LevelEditorOutput(EntitySelector &entitySelector, Grid &grid, int width, int height, EntityHandler &eHandler)
     :Output(width, height, eHandler), entitySelector(entitySelector), grid(grid)
