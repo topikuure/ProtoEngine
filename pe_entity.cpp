@@ -88,9 +88,9 @@ bool Entity::detectCollision(const Entity &other)
     }
 void Entity::handleCollision(const Entity &other)
     {
-    //Collision::handle(*boundingBox, *(other.boundingBox));
-    //position.x = boundingBox->x; + (boundingBox->width / 2);
-    //position.y = boundingBox->y; + (boundingBox->height / 2);
+    Collision::handle(*boundingBox, *(other.boundingBox));
+    position.x = boundingBox->x + (boundingBox->width / 2);
+    position.y = boundingBox->y + (boundingBox->height / 2);
     }
 void Entity::process(double time)
     {
@@ -103,7 +103,7 @@ void Entity::process(double time)
     }
 void Entity::render()
     {
-    if(sprite != NULL) sprite->blit(position.x - sprite->rect.w / 2, position.y - sprite->rect.h / 2);
+    if(sprite != NULL) sprite->blit(position.x - ((double)sprite->rect.w) / 2.0, position.y - ((double)sprite->rect.h) / 2.0);
     }
 
 Player::Player(double x, double y, const std::string &name):Entity(x, y, name)

@@ -21,7 +21,7 @@ Output::~Output()
     }
 void Output::render()
     {
-	SDL_SetRenderDrawColor(renderer, 0, 0, 0, 0);
+	SDL_SetRenderDrawColor(renderer, 0, 200, 0, 0);
     renderBackground();
     entityHandler.render();
     SDL_RenderPresent(renderer);
