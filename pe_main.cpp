@@ -28,13 +28,13 @@ int main(int argc, char **argv)
         showErrorMessage("player.loadSprite() failed");
         goto exit;
         }
-    player.loadBoundingBox(player.sprite->rect.w, player.sprite->rect.h);
+    player.loadBoundingBox((double)player.sprite->rect.w, (double)player.sprite->rect.h);
     if(!ai.loadSprite(output.renderer))
 		{
         showErrorMessage("ai.loadSprite() failed");
         goto exit;
         }
-    ai.loadBoundingBox(ai.sprite->rect.w, ai.sprite->rect.h);
+    ai.loadBoundingBox((double)ai.sprite->rect.w, (double)ai.sprite->rect.h);
 
     start = SDL_GetTicks();
     while(input.handle())

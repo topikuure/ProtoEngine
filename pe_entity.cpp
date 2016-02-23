@@ -54,8 +54,8 @@ void Entity::loadBoundingBox(double width, double height)
     {
     if(boundingBox != NULL) delete boundingBox;
     boundingBox = new BoundingBox;
-    boundingBox->x = position.x - (width / 2);
-    boundingBox->y = position.y - (height / 2);
+    boundingBox->x = position.x - (width / 2.0);
+    boundingBox->y = position.y - (height / 2.0);
     boundingBox->width = width;
     boundingBox->height = height;
     }
@@ -66,13 +66,13 @@ void Entity::move(double dirX, double dirY)
 
     if(velocity.x > 0)
         {
-        if(velocity.y > 0) velocity = Vector2D(0.777, 0.777);
-        else if(velocity.y < 0) velocity = Vector2D(0.777, -0.777);
+        if(velocity.y > 0) velocity = Vector2D(0.707, 0.707);
+        else if(velocity.y < 0) velocity = Vector2D(0.707, -0.707);
         }
     else if(velocity.x < 0)
         {
-        if(velocity.y > 0) velocity = Vector2D(-0.777, 0.777);
-        else if(velocity.y < 0) velocity = Vector2D(-0.777, -0.777);
+        if(velocity.y > 0) velocity = Vector2D(-0.707, 0.707);
+        else if(velocity.y < 0) velocity = Vector2D(-0.707, -0.707);
         }
     velocity *= speed;
     }
@@ -89,16 +89,16 @@ bool Entity::detectCollision(const Entity &other)
 void Entity::handleCollision(const Entity &other)
     {
     Collision::handle(*boundingBox, *(other.boundingBox));
-    position.x = boundingBox->x + (boundingBox->width / 2);
-    position.y = boundingBox->y + (boundingBox->height / 2);
+    position.x = boundingBox->x + (boundingBox->width / 2.0);
+    position.y = boundingBox->y + (boundingBox->height / 2.0);
     }
 void Entity::process(double time)
     {
     position += velocity * time;
     if(boundingBox != NULL)
         {
-        boundingBox->x = position.x - (boundingBox->width / 2);
-        boundingBox->y = position.y - (boundingBox->height / 2);
+        boundingBox->x = position.x - (boundingBox->width / 2.0);
+        boundingBox->y = position.y - (boundingBox->height / 2.0);
         }
     }
 void Entity::render()
@@ -108,7 +108,7 @@ void Entity::render()
 
 Player::Player(double x, double y, const std::string &name):Entity(x, y, name)
     {
-    speed = 60.0;
+    speed = 70.0;
     }
 
 Ai::Ai(double x, double y, const std::string &name):Entity(x, y, name)
