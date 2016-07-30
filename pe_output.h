@@ -24,12 +24,6 @@ class Output
     virtual void renderBackground();
     };
 
-class GameOutput: public Output
-    {
-    public:
-    void renderBackground(){};
-    };
-
 class LevelEditorOutput: public Output
     {
     public:
