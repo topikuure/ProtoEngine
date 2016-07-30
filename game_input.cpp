@@ -1,9 +1,9 @@
 #include <stdexcept>
 #include "game_input.h"
-#include "pe_entity.h"
-#include "pe_entityselector.h"
-#include "pe_level.h"
-#include "pe_grid.h"
+#include "PE/entity.h"
+#include "PE/entityselector.h"
+#include "PE/level.h"
+#include "PE/grid.h"
 namespace GAME
 {
 GameInput::GameInput(PE::Entity &player):player(player)

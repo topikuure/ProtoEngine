@@ -1,6 +1,6 @@
 #ifndef GAME_OUTPUT_INCLUDED
  #define GAME_OUTPUT_INCLUDED
-#include "pe_output.h"
+#include "PE/output.h"
 namespace GAME
 {
 class GameOutput: public PE::Output

@@ -1,7 +1,7 @@
 #include "SDL2/SDL.h"
-#include "pe_paths.h"
-#include "pe_entity.h"
-#include "pe_collision.h"
+#include "paths.h"
+#include "entity.h"
+#include "collision.h"
 #include "vector2d.h"
 #include <string>
 #include <cstdlib>
@@ -42,7 +42,7 @@ int Entity::loadSprite(SDL_Renderer *r)
     {
     try
 		{
-		this->sprite = new Sprite(r, PE_Paths::root + PE_Paths::sprites + this->name + ".bmp");
+		this->sprite = new Sprite(r, Paths::root + Paths::sprites + this->name + ".bmp");
 		return 1;
 		}
 	catch(const std::invalid_argument &e)

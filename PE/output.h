@@ -1,10 +1,10 @@
-#ifndef PE_OUTPUT_INCLUDED
- #define PE_OUTPUT_INCLUDED
+#ifndef OUTPUT_INCLUDED
+ #define OUTPUT_INCLUDED
 #include <vector>
 #include "SDL2/SDL.h"
-#include "pe_entityhandler.h"
-#include "pe_entityselector.h"
-#include "pe_grid.h"
+#include "entityhandler.h"
+#include "entityselector.h"
+#include "grid.h"
 namespace PE
 {
 class Output

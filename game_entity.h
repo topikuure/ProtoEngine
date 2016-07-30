@@ -2,7 +2,7 @@
  #define GAME_ENTITY_INCLUDED
 #include <string>
 #include "SDL2/SDL.h"
-#include "pe_entity.h"
+#include "PE/entity.h"
 namespace GAME
 {
 class Player: public PE::Entity

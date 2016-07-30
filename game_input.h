@@ -1,11 +1,11 @@
 #ifndef GAME_INPUT_INCLUDED
  #define GAME_INPUT_INCLUDED
 #include "SDL2/SDL.h"
-#include "pe_input.h"
-#include "pe_entity.h"
-#include "pe_entityselector.h"
-#include "pe_level.h"
-#include "pe_grid.h"
+#include "PE/input.h"
+#include "PE/entity.h"
+#include "PE/entityselector.h"
+#include "PE/level.h"
+#include "PE/grid.h"
 namespace GAME
 {
 class GameInput: public PE::Input

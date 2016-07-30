@@ -1,10 +1,10 @@
-#ifndef PE_INPUT_INCLUDED
- #define PE_INPUT_INCLUDED
+#ifndef INPUT_INCLUDED
+ #define INPUT_INCLUDED
 #include "SDL2/SDL.h"
-#include "pe_entity.h"
-#include "pe_entityselector.h"
-#include "pe_level.h"
-#include "pe_grid.h"
+#include "entity.h"
+#include "entityselector.h"
+#include "level.h"
+#include "grid.h"
 namespace PE
 {
 class Input

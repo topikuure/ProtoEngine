@@ -1,10 +1,10 @@
-﻿#ifndef PE_ENTITY_INCLUDED
- #define PE_ENTITY_INCLUDED
+﻿#ifndef ENTITY_INCLUDED
+ #define ENTITY_INCLUDED
 #include <string>
 #include "SDL2/SDL.h"
 #include "vector2d.h"
-#include "pe_sprite.h"
-#include "pe_collision.h"
+#include "sprite.h"
+#include "collision.h"
 namespace PE
 {
 //"root/sprite" -kansiossa pitää olla entityn nimeä vastaava .png-tiedosto, jos entitylle haluaa spriten.

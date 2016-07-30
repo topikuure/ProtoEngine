@@ -1,11 +1,11 @@
 #include "SDL2/SDL.h"
 #include "game_input.h"
 #include "game_entity.h"
-#include "pe_output.h"
-#include "pe_entity.h"
-#include "pe_entityhandler.h"
+#include "PE/output.h"
+#include "PE/entity.h"
+#include "PE/entityhandler.h"
 /*
-pe_paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
+paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
 */
 void showErrorMessage(const char *message)
     {
