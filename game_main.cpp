@@ -19,11 +19,11 @@ int main(int argc, char **argv)
     PE::EntityHandler entityHandler;
     PE::Output output(800, 600, entityHandler);
 
-	int playerId = (entityHandler.addEntity(PE::Player(200, 200))).id;
+	int playerId = (entityHandler.addEntity(GAME::Player(200, 200))).id;
     int aiId = (entityHandler.addEntity(PE::Ai(300, 300))).id;
     PE::Entity &player = entityHandler.getEntity(playerId);
     PE::Entity &ai = entityHandler.getEntity(aiId);
-	PE::GameInput input(player);
+	GAME::GameInput input(player);
 	if(!player.loadSprite(output.renderer))
 		{
         showErrorMessage("player.loadSprite() failed");

@@ -4,9 +4,9 @@
 #include "pe_entityselector.h"
 #include "pe_level.h"
 #include "pe_grid.h"
-namespace PE
+namespace GAME
 {
-GameInput::GameInput(Entity &player):player(player)
+GameInput::GameInput(PE::Entity &player):player(player)
     {
     }
 int GameInput::handle()
@@ -27,7 +27,7 @@ int GameInput::handle()
         }
     return 1;
     }
-LevelEditorInput::LevelEditorInput(Level &level, Grid &grid, EntitySelector &entitySelector)
+LevelEditorInput::LevelEditorInput(PE::Level &level, PE::Grid &grid, PE::EntitySelector &entitySelector)
     :level(level), grid(grid), entitySelector(entitySelector)
     {
     }
@@ -58,7 +58,7 @@ int LevelEditorInput::handle()
                 {
                 if(mouseLeftDown == false)
                     {
-                    Entity newEntity = *(entitySelector.selectedEntity);
+                    PE::Entity newEntity = *(entitySelector.selectedEntity);
                     Vector2D position(mouseX, mouseY);
                     if(grid.center(position))
                         {

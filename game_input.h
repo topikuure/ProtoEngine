@@ -6,26 +6,26 @@
 #include "pe_entityselector.h"
 #include "pe_level.h"
 #include "pe_grid.h"
-namespace PE
+namespace GAME
 {
-class GameInput: public Input
+class GameInput: public PE::Input
     {
     private:
-    Entity &player;
+    PE::Entity &player;
 
     public:
-    GameInput(Entity &player);
+    GameInput(PE::Entity &player);
     int handle();
     };
-class LevelEditorInput: public Input
+class LevelEditorInput: public PE::Input
     {
     private:
-    Level &level;
-    Grid &grid;
-    EntitySelector &entitySelector;
+    PE::Level &level;
+    PE::Grid &grid;
+    PE::EntitySelector &entitySelector;
 
     public:
-    LevelEditorInput(Level &level, Grid &grid, EntitySelector &entitySelector);
+    LevelEditorInput(PE::Level &level, PE::Grid &grid, PE::EntitySelector &entitySelector);
     int handle();
     };
 }

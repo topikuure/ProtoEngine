@@ -1,8 +1,8 @@
 #include <string>
 #include "game_entity.h"
-namespace PE
+namespace GAME
 {
-Player::Player(double x, double y, const std::string &name):Entity(x, y, name)
+Player::Player(double x, double y, const std::string &name):PE::Entity(x, y, name)
     {
     speed = 70.0;
     }

@@ -1,9 +1,9 @@
 #ifndef GAME_OUTPUT_INCLUDED
  #define GAME_OUTPUT_INCLUDED
 #include "pe_output.h"
-namespace PE
+namespace GAME
 {
-class GameOutput: public Output
+class GameOutput: public PE::Output
     {
     public:
     void renderBackground(){};

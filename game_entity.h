@@ -3,9 +3,9 @@
 #include <string>
 #include "SDL2/SDL.h"
 #include "pe_entity.h"
-namespace PE
+namespace GAME
 {
-class Player: public Entity
+class Player: public PE::Entity
     {
     public:
     Player(double x = 0.0, double y = 0.0, const std::string &name = "player");
