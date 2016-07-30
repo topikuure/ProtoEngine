@@ -106,13 +106,7 @@ void Entity::render()
     if(sprite != NULL) sprite->blit(position.x - ((double)sprite->rect.w) / 2.0, position.y - ((double)sprite->rect.h) / 2.0);
     }
 
-Player::Player(double x, double y, const std::string &name):Entity(x, y, name)
-    {
-    speed = 70.0;
-    }
-
 Ai::Ai(double x, double y, const std::string &name):Entity(x, y, name)
     {
-	speed = 50.0;
     }
 }

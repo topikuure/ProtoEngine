@@ -1,10 +1,10 @@
 ﻿#ifndef PE_ENTITY_INCLUDED
  #define PE_ENTITY_INCLUDED
+#include <string>
 #include "SDL2/SDL.h"
 #include "vector2d.h"
 #include "pe_sprite.h"
 #include "pe_collision.h"
-#include <string>
 namespace PE
 {
 //"root/sprite" -kansiossa pitää olla entityn nimeä vastaava .png-tiedosto, jos entitylle haluaa spriten.
@@ -32,11 +32,6 @@ class Entity
     void render();
     };
 
-class Player: public Entity
-    {
-    public:
-    Player(double x = 0.0, double y = 0.0, const std::string &name = "player");
-    };
 class Ai: public Entity
     {
     public:

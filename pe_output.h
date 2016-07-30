@@ -23,11 +23,13 @@ class Output
     void render(const std::vector<int> &ids);
     virtual void renderBackground();
     };
+
 class GameOutput: public Output
     {
     public:
     void renderBackground(){};
     };
+
 class LevelEditorOutput: public Output
     {
     public:

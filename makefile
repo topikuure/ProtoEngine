@@ -1,2 +1,2 @@
 all:
-	g++ pe_main.cpp pe_input.cpp pe_output.cpp pe_sprite.cpp pe_entity.cpp pe_entityhandler.cpp pe_entityselector.cpp pe_grid.cpp pe_collision.cpp pe_level.cpp vector2d.cpp -o ProtoEngine -lmingw32 -lSDL2main -lSDL2
+	g++ pe_output.cpp pe_sprite.cpp pe_entity.cpp pe_entityhandler.cpp pe_entityselector.cpp pe_grid.cpp pe_collision.cpp pe_level.cpp vector2d.cpp game_main.cpp game_input.cpp game_entity.cpp -o ProtoEngine -lmingw32 -lSDL2main -lSDL2

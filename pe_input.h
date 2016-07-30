@@ -13,28 +13,8 @@ class Input
     SDL_Event event;
 
     public:
-    virtual ~Input();
+    virtual ~Input(){};
     virtual int handle() = 0;
-    };
-class GameInput: public Input
-    {
-    private:
-    Entity &player;
-
-    public:
-    GameInput(Entity &player);
-    int handle();
-    };
-class LevelEditorInput: public Input
-    {
-    private:
-    Level &level;
-    Grid &grid;
-    EntitySelector &entitySelector;
-
-    public:
-    LevelEditorInput(Level &level, Grid &grid, EntitySelector &entitySelector);
-    int handle();
     };
 }
 #endif
