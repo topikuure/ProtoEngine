@@ -5,6 +5,7 @@
 #include "vector2d.h"
 #include "sprite.h"
 #include "collision.h"
+#include "statemachine.h"
 namespace PE
 {
 //"root/sprite" -kansiossa pitää olla entityn nimeä vastaava .png-tiedosto, jos entitylle haluaa spriten.
@@ -25,6 +26,7 @@ class Entity
     int loadSprite(SDL_Renderer *renderer);
     void loadBoundingBox(double width, double height);
     void move(double dirX, double dirY);
+    void moveAi(double dirX, double dirY);//refaktoroi
     void stop();
     bool detectCollision(const Entity &other);
     void handleCollision(const Entity &other);
@@ -35,7 +37,7 @@ class Entity
 class Ai: public Entity
     {
     public:
-	//Brains brains;
+	StateMachine stateMachine;
     Ai(double x = 0.0, double y = 0.0, const std::string &name = "ai");
     };
 }

@@ -20,24 +20,30 @@ int main(int argc, char **argv)
     PE::Output output(800, 600, entityHandler);
 
 	int playerId = (entityHandler.addEntity(GAME::Player(200, 200))).id;
-    int aiId = (entityHandler.addEntity(PE::Ai(300, 300))).id;
+    int enemyId = (entityHandler.addEntity(GAME::Enemy(300, 300))).id;
     PE::Entity &player = entityHandler.getEntity(playerId);
-    PE::Entity &ai = entityHandler.getEntity(aiId);
+    PE::Entity &enemy = entityHandler.getEntity(enemyId);
 	GAME::GameInput input(player);
+
 	if(!player.loadSprite(output.renderer))
 		{
         showErrorMessage("player.loadSprite() failed");
         goto exit;
         }
     player.loadBoundingBox((double)player.sprite->rect.w, (double)player.sprite->rect.h);
-    if(!ai.loadSprite(output.renderer))
+
+    if(!enemy.loadSprite(output.renderer))
 		{
-        showErrorMessage("ai.loadSprite() failed");
+        showErrorMessage("enemy.loadSprite() failed");
         goto exit;
         }
-    ai.loadBoundingBox((double)ai.sprite->rect.w, (double)ai.sprite->rect.h);
+    enemy.loadBoundingBox((double)enemy.sprite->rect.w, (double)enemy.sprite->rect.h);
+
+    //Ei toimi:
+    //((GAME::Enemy)enemy).initStateMachine((GAME::Player)player);
 
     start = SDL_GetTicks();
+
     while(input.handle())
         {
         end = SDL_GetTicks();

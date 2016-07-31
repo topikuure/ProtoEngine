@@ -76,6 +76,12 @@ void Entity::move(double dirX, double dirY)
         }
     velocity *= speed;
     }
+void Entity::moveAi(double dirX, double dirY)
+    {
+    velocity.x += dirX;
+    velocity.y += dirY;
+    velocity *= speed;
+    }
 void Entity::stop()
     {
     velocity.x = 0.0;
