@@ -4,7 +4,20 @@
 #include "PE/vector2D.h"
 namespace GAME
 {
-Patrol::Patrol(PE::StateMachine &sm, Enemy &parent, const Player &p): State(PATROL_ID, sm), parent(parent), player(p)
+Idle::Idle(PE::StateMachine &sm, Enemy &parent)
+    :State(IDLE_ID, sm), parent(parent)
+    {
+    }
+Idle::Idle(const Idle &other)
+    :State(other), parent(other.parent)
+    {
+    }
+void Idle::process()
+    {
+    }
+
+Patrol::Patrol(PE::StateMachine &sm, Enemy &parent, const Player &p):
+    State(PATROL_ID, sm), parent(parent), player(p)
     {
     nextWayPointIndex = 0;
     }
@@ -14,7 +27,7 @@ void Patrol::addWayPoint(const Vector2D &point)
     }
 void Patrol::process()
     {
-    Vector2D parentToPlayer(player.position.x - parent.position.x,
+/*    Vector2D parentToPlayer(player.position.x - parent.position.x,
                           player.position.y - parent.position.y);
 
     if(!wayPoints.empty())
@@ -30,11 +43,12 @@ void Patrol::process()
             }
         else ++nextWayPointIndex;
         if(nextWayPointIndex >= wayPoints.size()) nextWayPointIndex = 0;
-        }
+        }*/
     //if(parentToPlayer.getMagnitude() <= 40) stateMachine.changeState(ATTACK_ID);
     }
 
-Attack::Attack(PE::StateMachine &sm, Enemy &parent, const Player &p): State(ATTACK_ID, sm), parent(parent), player(p)
+Attack::Attack(PE::StateMachine &sm, Enemy &parent, const Player &p)
+    :State(ATTACK_ID, sm), parent(parent), player(p)
     {
     }
 void Attack::process()

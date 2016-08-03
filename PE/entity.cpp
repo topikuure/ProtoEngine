@@ -115,4 +115,8 @@ void Entity::render()
 Ai::Ai(double x, double y, const std::string &name):Entity(x, y, name)
     {
     }
+Ai::Ai(const Ai &other)
+    :stateMachine(other.stateMachine)
+    {
+    }
 }

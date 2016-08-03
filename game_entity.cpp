@@ -4,30 +4,36 @@
 #include "PE/vector2d.h"
 namespace GAME
 {
-Player::Player(double x, double y, const std::string &name):PE::Entity(x, y, name)
+Player::Player(double x, double y, const std::string &name):
+    PE::Entity(x, y, name)
     {
     speed = 70.0;
     }
-
-Enemy::Enemy(double x, double y, const std::string &name):PE::Ai(x, y, name)
+Player::Player(const Player &other)
+    :Entity(other)
     {
-    speed = 50.0;
     }
 
+Enemy::Enemy(double x, double y, const std::string &name):
+    PE::Ai(x, y, name)
+    {
+    speed = 50.0;
+    stateMachine.addState(new Idle(stateMachine, *this));
+    stateMachine.changeState(IDLE_ID);
+    SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Debug", "initStateMachine done", NULL);
+    }
+Enemy::Enemy(const Enemy &other)
+    :Ai(other)
+    {
+    }
+Enemy::~Enemy()
+    {
+    }
 void Enemy::initStateMachine(const Player &p)
     {
-    Patrol patrol(stateMachine, *this, p);
-    Attack attack(stateMachine, *this, p);
-
-    patrol.addWayPoint(Vector2D(20, 20));
-    patrol.addWayPoint(Vector2D(300, 20));
-    patrol.addWayPoint(Vector2D(20, 300));
-    patrol.addWayPoint(Vector2D(300, 300));
-
-    stateMachine.addState(&patrol);
-    stateMachine.addState(&attack);
-
-    stateMachine.changeState(ATTACK_ID);
+    //stateMachine.addState(new Idle(stateMachine, *this));
+    //stateMachine.changeState(IDLE_ID);
+    //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Debug", "initStateMachine done", NULL);
     }
 void Enemy::process(double time)
     {

@@ -10,8 +10,6 @@ class State
     public:
     int id;
     StateMachine &stateMachine;
-    //Tänne tämä?
-    //Entity &parent;
 
     State(int id, StateMachine &sm);
     State(const State &other);
@@ -26,6 +24,8 @@ class StateMachine
     std::vector<State*> states;
 
     StateMachine();
+    StateMachine(const StateMachine &other);
+    virtual ~StateMachine();
     void addState(State *s);
     void stop();
     void changeState(int id);

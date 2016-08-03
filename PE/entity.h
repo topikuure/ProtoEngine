@@ -21,7 +21,7 @@ class Entity
 
     Entity(double x = 0.0, double y = 0.0, const std::string &name = "entity");
 	Entity(const Entity &other);
-    ~Entity();
+    virtual ~Entity();
 
     int loadSprite(SDL_Renderer *renderer);
     void loadBoundingBox(double width, double height);
@@ -30,7 +30,7 @@ class Entity
     void stop();
     bool detectCollision(const Entity &other);
     void handleCollision(const Entity &other);
-    void process(double time);
+    virtual void process(double time);//virtual pois jos haluaa optimoidumpaa-> Ai:lle oma lista entityHandleriin, jossa prosessoidaan Ai.stateMachine?
     void render();
     };
 
@@ -39,6 +39,7 @@ class Ai: public Entity
     public:
 	StateMachine stateMachine;
     Ai(double x = 0.0, double y = 0.0, const std::string &name = "ai");
+    Ai(const Ai &other);
     };
 }
 #endif

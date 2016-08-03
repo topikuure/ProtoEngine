@@ -58,11 +58,14 @@ int LevelEditorInput::handle()
                 {
                 if(mouseLeftDown == false)
                     {
-                    PE::Entity newEntity = *(entitySelector.selectedEntity);
+                    PE::Entity *newEntity = new PE::Entity();
+
+                    //kopioi ARVO äläkä laita newEntityä osoittamaan muualle
+                    *newEntity = *(entitySelector.selectedEntity);
                     Vector2D position(mouseX, mouseY);
                     if(grid.center(position))
                         {
-                        newEntity.position = position;
+                        newEntity->position = position;
                         level.entityHandler.addEntity(newEntity);
 						}
                     mouseLeftDown = true;

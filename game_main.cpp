@@ -19,28 +19,28 @@ int main(int argc, char **argv)
     PE::EntityHandler entityHandler;
     PE::Output output(800, 600, entityHandler);
 
-	int playerId = (entityHandler.addEntity(GAME::Player(200, 200))).id;
-    int enemyId = (entityHandler.addEntity(GAME::Enemy(300, 300))).id;
-    PE::Entity &player = entityHandler.getEntity(playerId);
-    PE::Entity &enemy = entityHandler.getEntity(enemyId);
-	GAME::GameInput input(player);
+	int playerId = (entityHandler.addEntity(new GAME::Player(200, 200)))->id;
+    int enemyId = (entityHandler.addEntity(new GAME::Enemy(300, 300)))->id;
+    GAME::Player *player = (GAME::Player*)entityHandler.getEntity(playerId);    
+    GAME::Enemy *enemy = (GAME::Enemy*)entityHandler.getEntity(enemyId);
 
-	if(!player.loadSprite(output.renderer))
+	GAME::GameInput input(*player);
+
+	if(!player->loadSprite(output.renderer))
 		{
         showErrorMessage("player.loadSprite() failed");
         goto exit;
         }
-    player.loadBoundingBox((double)player.sprite->rect.w, (double)player.sprite->rect.h);
+    player->loadBoundingBox((double)player->sprite->rect.w, (double)player->sprite->rect.h);
 
-    if(!enemy.loadSprite(output.renderer))
+    if(!enemy->loadSprite(output.renderer))
 		{
         showErrorMessage("enemy.loadSprite() failed");
         goto exit;
         }
-    enemy.loadBoundingBox((double)enemy.sprite->rect.w, (double)enemy.sprite->rect.h);
+    enemy->loadBoundingBox((double)enemy->sprite->rect.w, (double)enemy->sprite->rect.h);
 
-    //Ei toimi:
-    //((GAME::Enemy)enemy).initStateMachine((GAME::Player)player);
+    enemy->initStateMachine(*player);
 
     start = SDL_GetTicks();
 

@@ -12,14 +12,14 @@ class EntityHandler
     int entityId;
 
     public:
-    std::vector<Entity> entities;
+    std::vector<Entity*> entities;
 
     EntityHandler();
     ~EntityHandler();
 
-    Entity& addEntity(const Entity &e);
+    Entity* addEntity(Entity *e);
     void removeEntity(int id);
-    Entity& getEntity(int id);
+    Entity* getEntity(int id);
     void clearEntities();
 
     int save(const std::string &filename);//Ei implementoitu

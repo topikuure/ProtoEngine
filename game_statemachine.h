@@ -6,7 +6,22 @@
 #include "game_entity.h"
 namespace GAME
 {
-enum StateId{PATROL_ID, ATTACK_ID};
+void showDebugMessage(const char *message);
+
+class Enemy;
+class Player;
+
+enum StateId{IDLE_ID, PATROL_ID, ATTACK_ID};
+
+class Idle: public PE::State
+    {
+    public:
+    Enemy &parent;
+
+    Idle(PE::StateMachine &sm, Enemy &parent);
+    Idle(const Idle &other);
+    void process();
+    };
 
 class Patrol: public PE::State
     {
@@ -33,18 +48,3 @@ class Attack: public PE::State
     };
 }
 #endif
-/*Esimerkki
-int main()
-    {
-    StateMachine sm;
-    Patrol p(sm);
-    Attack a(sm);
-    sm.addState(&p);
-    sm.addState(&a);
-    sm.changeState(PATROL_ID);
-    while(sm.process())
-        {
-        }
-    return 0;
-    }
-*/
