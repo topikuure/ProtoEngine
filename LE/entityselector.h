@@ -2,7 +2,7 @@
  #define ENTITY_SELECTOR_INCLUDED
 #include <vector>
 #include "SDL2/SDL.h"
-#include "vector2d.h"
+#include "PE/vector2d.h"
 #include "entityhandler.h"
 #include "entity.h"
 namespace PE

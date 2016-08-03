@@ -2,8 +2,6 @@
 #include "SDL2/SDL.h"
 #include "output.h"
 #include "entityhandler.h"
-#include "entityselector.h"
-#include "grid.h"
 namespace PE
 {
 Output::Output(int width, int height, EntityHandler &eHandler):entityHandler(eHandler)
@@ -37,20 +35,5 @@ void Output::renderBackground()
     {
     SDL_Rect screenRect = {.x = 0, .y = 0, .w = screenWidth, .h = screenHeight};
     SDL_RenderFillRect(renderer, &screenRect);
-    }
-LevelEditorOutput::LevelEditorOutput(EntitySelector &entitySelector, Grid &grid, int width, int height, EntityHandler &eHandler)
-    :Output(width, height, eHandler), entitySelector(entitySelector), grid(grid)
-    {
-    }
-void LevelEditorOutput::renderBackground()
-    {
-    SDL_RenderClear(renderer);
-
-    std::vector<int> ids;
-    ids.push_back(entitySelector.selectedEntity->id);
-    entitySelector.entityHandler.render(ids);
-    ids.clear();
-
-    grid.render(renderer);
     }
 }

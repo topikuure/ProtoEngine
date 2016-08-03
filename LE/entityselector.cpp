@@ -1,10 +1,10 @@
 #include <vector>
 #include "SDL2/SDL.h"
+#include "PE/vector2d.h"
+#include "PE/entity.h"
 #include "entityselector.h"
-#include "vector2d.h"
 #include "entityhandler.h"
-#include "entity.h"
-namespace PE
+namespace LE
 {
 EntitySelector::EntitySelector(double x, double y):position(Vector2D(x, y)), selectedEntity(NULL), selectedId(0)
     {

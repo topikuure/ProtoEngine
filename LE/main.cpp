@@ -2,12 +2,12 @@
 #include <cstring>
 #include <vector>
 #include "SDL2/SDL.h"
+#include "PE/entity.h"
+#include "PE/entityhandler.h"
+#include "PE/entityselector.h"
+#include "PE/level.h"
 #include "input.h"
 #include "output.h"
-#include "entity.h"
-#include "entityhandler.h"
-#include "entityselector.h"
-#include "level.h"
 /*
 paths.h sisältää hardcodattuna tarvittavat polut ja kansioiden nimet. Tee siitä järkevämpi
 */

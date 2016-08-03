@@ -3,9 +3,6 @@
 #include "SDL2/SDL.h"
 #include "PE/input.h"
 #include "PE/entity.h"
-#include "PE/entityselector.h"
-#include "PE/level.h"
-#include "PE/grid.h"
 namespace GAME
 {
 class GameInput: public PE::Input
@@ -15,17 +12,6 @@ class GameInput: public PE::Input
 
     public:
     GameInput(PE::Entity &player);
-    int handle();
-    };
-class LevelEditorInput: public PE::Input
-    {
-    private:
-    PE::Level &level;
-    PE::Grid &grid;
-    PE::EntitySelector &entitySelector;
-
-    public:
-    LevelEditorInput(PE::Level &level, PE::Grid &grid, PE::EntitySelector &entitySelector);
     int handle();
     };
 }
