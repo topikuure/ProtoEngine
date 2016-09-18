@@ -1,11 +1,15 @@
+/*
+RIKKI
+Mieti uusiksi koko homma. Tästä pitäisi tulla geneerisempi level editori eikä se saisi olla riippuvainen testipelistä
+*/
 #include <cstdlib>
 #include <cstring>
 #include <vector>
 #include "SDL2/SDL.h"
-#include "PE/entity.h"
-#include "PE/entityhandler.h"
-#include "PE/entityselector.h"
-#include "PE/level.h"
+#include "../PE/entity.h"
+#include "../PE/entityhandler.h"
+#include "../PE/level.h"
+#include "entityselector.h"
 #include "input.h"
 #include "output.h"
 /*
@@ -30,17 +34,17 @@ int main(int argc, char **argv)
     int screenWidth = 800, screenHeight = 600;
 
     PE::Level level;
-    PE::EntitySelector entitySelector(200, 200);
+    LE::EntitySelector entitySelector(200, 200);
 
     SDL_Rect gridRect;
     gridRect.x = 24;
     gridRect.y = 24;
     gridRect.w = 24 * 16;
     gridRect.h = 24 * 16;
-    PE::Grid grid(gridRect, 24, 24, screenWidth, screenHeight);
+    LE::Grid grid(gridRect, 24, 24, screenWidth, screenHeight);
 
-    PE::LevelEditorOutput output(entitySelector, grid, screenWidth, screenHeight, level.entityHandler);
-    PE::LevelEditorInput input(level, grid, entitySelector);
+    LE::LevelEditorOutput output(entitySelector, grid, screenWidth, screenHeight, level.entityHandler);
+    LE::LevelEditorInput input(level, grid, entitySelector);
 
     std::vector<int> ids;
 /*
@@ -58,15 +62,16 @@ int main(int argc, char **argv)
 	player.position = Vector2D(player.position.x + player.sprite->rect.w / 2, player.position.y + player.sprite->rect.h / 2);
     ai.position = Vector2D(ai.position.x + ai.sprite->rect.w / 2, ai.position.y + ai.sprite->rect.h / 2);
 */
-	PE::Entity *entity = &(entitySelector.addEntity(PE::Player()));
+/*
+	PE::Entity *entity = &(entitySelector.addEntity(new GAME::Player()));
 
 	if(!entity->loadSprite(output.renderer))
         {
         showErrorMessage("player.loadSprite() failed");
         }
     entity->position = Vector2D(entity->position.x + entity->sprite->rect.w / 2, entity->position.y + entity->sprite->rect.h / 2);
-
-    entity = &(entitySelector.addEntity(PE::Ai()));
+*/
+    PE::Entity *entity = &(entitySelector.addEntity(new PE::Ai()));
     if(!entity->loadSprite(output.renderer))
         {
         showErrorMessage("ai.loadSprite() failed");
@@ -86,7 +91,7 @@ int main(int argc, char **argv)
         ids.push_back(entitySelector.selectedEntity->id);
         for(unsigned int i = 0; i < level.entityHandler.entities.size(); ++i)
             {
-            ids.push_back(level.entityHandler.entities[i].id);
+            ids.push_back(level.entityHandler.entities[i]->id);
             }
         output.render(ids);
         ids.clear();

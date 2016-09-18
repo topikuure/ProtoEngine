@@ -1,8 +1,8 @@
 #include "SDL2/SDL.h"
-#include "leveleditor_output.h"
+#include "output.h"
 namespace LE
 {
-LevelEditorOutput::LevelEditorOutput(EntitySelector &entitySelector, Grid &grid, int width, int height, EntityHandler &eHandler)
+LevelEditorOutput::LevelEditorOutput(EntitySelector &entitySelector, Grid &grid, int width, int height, PE::EntityHandler &eHandler)
     :Output(width, height, eHandler), entitySelector(entitySelector), grid(grid)
     {
     }

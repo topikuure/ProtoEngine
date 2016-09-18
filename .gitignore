@@ -1,0 +1,8 @@
+*.o
+*.exe
+
+PE/*.o
+PE/*.exe
+
+LE/*.o
+LE/*.exe

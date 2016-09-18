@@ -1,7 +1,7 @@
 #include <stdexcept>
 #include "SDL2/SDL.h"
 #include "grid.h"
-namespace PE
+namespace LE
 {
 Grid::Grid(const SDL_Rect &rect, int cellWidth, int cellHeight, int screenWidth, int screenHeight)
     :rect(rect), cellWidth(cellWidth), cellHeight(cellHeight), screenWidth(screenWidth), screenHeight(screenHeight)

@@ -1,11 +1,11 @@
 #include <stdexcept>//Turha?
-#include "leveleditor_input.h"
-#include "PE/entityselector.h"
-#include "PE/level.h"
-#include "PE/grid.h"
+#include "../PE/level.h"
+#include "input.h"
+#include "entityselector.h"
+#include "grid.h"
 namespace LE
 {
-LevelEditorInput::LevelEditorInput(PE::Level &level, PE::Grid &grid, PE::EntitySelector &entitySelector)
+LevelEditorInput::LevelEditorInput(PE::Level &level, Grid &grid, EntitySelector &entitySelector)
     :level(level), grid(grid), entitySelector(entitySelector)
     {
     }

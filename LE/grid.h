@@ -1,8 +1,8 @@
 #ifndef GRID_INCLUDED
  #define GRID_INCLUDED
 #include "SDL2/SDL.h"
-#include "vector2d.h"
-namespace PE
+#include "../PE/vector2d.h"
+namespace LE
 {
 class Grid
     {
