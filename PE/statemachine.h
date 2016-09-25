@@ -14,7 +14,7 @@ class State
     State(int id, StateMachine &sm);
     State(const State &other);
     virtual ~State(){};
-    virtual void process() = 0;;
+    virtual void process() = 0;
     };
 
 class StateMachine
