@@ -19,8 +19,8 @@ int main(int argc, char **argv)
     PE::EntityHandler entityHandler;
     PE::Output output(800, 600, entityHandler);
 
-	int playerId = (entityHandler.addEntity(new GAME::Player(200, 200)))->id;
-    int enemyId = (entityHandler.addEntity(new GAME::Enemy(300, 300)))->id;
+	int playerId = (entityHandler.addEntity(GAME::Player(200, 200)))->id;
+    int enemyId = (entityHandler.addEntity(GAME::Enemy(300, 300)))->id;
     GAME::Player *player = (GAME::Player*)entityHandler.getEntity(playerId);    
     GAME::Enemy *enemy = (GAME::Enemy*)entityHandler.getEntity(enemyId);
 

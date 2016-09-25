@@ -17,7 +17,7 @@ class EntityHandler
     EntityHandler();
     ~EntityHandler();
 
-    Entity* addEntity(Entity *e);
+    Entity* addEntity(const Entity &e);
     void removeEntity(int id);
     Entity* getEntity(int id);
     void clearEntities();

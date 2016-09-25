@@ -23,9 +23,11 @@ EntityHandler::~EntityHandler()
         }
     entities.clear();
     }
-Entity* EntityHandler::addEntity(Entity *e)
+Entity* EntityHandler::addEntity(const Entity &e)
     {
-    entities.push_back(e);
+    Entity *newEntity = new Entity();
+    *newEntity = e;
+    entities.push_back(newEntity);
     entities.back()->id = entityId++;
     return entities.back();
     }
