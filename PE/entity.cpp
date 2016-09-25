@@ -38,6 +38,10 @@ Entity::~Entity()
 	if(sprite != NULL) delete sprite;
     if(boundingBox != NULL) delete boundingBox;
     }
+Entity* Entity::clone() const
+    {
+    return new Entity(*this);
+    }
 int Entity::loadSprite(SDL_Renderer *r)
     {
     try
@@ -116,7 +120,14 @@ Ai::Ai(double x, double y, const std::string &name):Entity(x, y, name)
     {
     }
 Ai::Ai(const Ai &other)
-    :stateMachine(other.stateMachine)
+    :Entity(other), stateMachine(other.stateMachine)
     {
+    }
+Ai::~Ai()
+    {
+    }
+Entity* Ai::clone() const
+    {
+    return (Entity*) new Ai(*this);
     }
 }

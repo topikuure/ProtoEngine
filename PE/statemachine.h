@@ -14,7 +14,11 @@ class State
     State(int id, StateMachine &sm);
     State(const State &other);
     virtual ~State(){};
-    virtual void process() = 0;
+
+    //Kutsujan pitää muistaa vapauttaa muisti palautetusta Entity-pointterista.
+    virtual State* clone() const;
+
+    virtual void process(){};
     };
 
 class StateMachine
@@ -26,7 +30,7 @@ class StateMachine
     StateMachine();
     StateMachine(const StateMachine &other);
     virtual ~StateMachine();
-    void addState(State *s);
+    void addState(const State &s);
     void stop();
     void changeState(int id);
     int process();

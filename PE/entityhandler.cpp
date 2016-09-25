@@ -6,12 +6,18 @@
 #include "SDL2/SDL.h"
 #include "entityhandler.h"
 #include "entity.h"
-#include <iostream>
 namespace PE
 {
 EntityHandler::EntityHandler()
     :entityId(0)
     {
+    }
+EntityHandler::EntityHandler(const EntityHandler &other)
+    {
+    for(int i = 0; i < other.entities.size(); ++i)
+        {
+        entities.push_back(other.entities[i]->clone());
+        }
     }
 
 //Varmista, että muistin vapauttaminen toimii järkevästi
@@ -25,9 +31,7 @@ EntityHandler::~EntityHandler()
     }
 Entity* EntityHandler::addEntity(const Entity &e)
     {
-    Entity *newEntity = new Entity();
-    *newEntity = e;
-    entities.push_back(newEntity);
+    entities.push_back(e.clone());
     entities.back()->id = entityId++;
     return entities.back();
     }

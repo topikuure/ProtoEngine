@@ -15,6 +15,7 @@ class EntityHandler
     std::vector<Entity*> entities;
 
     EntityHandler();
+    EntityHandler(const EntityHandler &other);
     ~EntityHandler();
 
     Entity* addEntity(const Entity &e);

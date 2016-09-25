@@ -13,12 +13,16 @@ Player::Player(const Player &other)
     :Entity(other)
     {
     }
+PE::Entity* Player::clone() const
+    {
+    return (Entity*) new Player(*this);
+    }
 
 Enemy::Enemy(double x, double y, const std::string &name):
     PE::Ai(x, y, name)
     {
     speed = 50.0;
-    stateMachine.addState(new Idle(stateMachine, *this));
+    stateMachine.addState(Idle(stateMachine, *this));
     stateMachine.changeState(IDLE_ID);
     SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Debug", "initStateMachine done", NULL);
     }
@@ -26,12 +30,13 @@ Enemy::Enemy(const Enemy &other)
     :Ai(other)
     {
     }
-Enemy::~Enemy()
+PE::Entity* Enemy::clone() const
     {
+    return (Entity*) new Enemy(*this);
     }
 void Enemy::initStateMachine(const Player &p)
     {
-    //stateMachine.addState(new Idle(stateMachine, *this));
+    //stateMachine.addState(Idle(stateMachine, *this));
     //stateMachine.changeState(IDLE_ID);
     //SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Debug", "initStateMachine done", NULL);
     }

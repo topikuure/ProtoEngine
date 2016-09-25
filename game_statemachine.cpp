@@ -12,6 +12,10 @@ Idle::Idle(const Idle &other)
     :State(other), parent(other.parent)
     {
     }
+PE::State* Idle::clone() const
+    {
+    return (PE::State*) new Idle(*this);
+    }
 void Idle::process()
     {
     }
@@ -20,6 +24,15 @@ Patrol::Patrol(PE::StateMachine &sm, Enemy &parent, const Player &p):
     State(PATROL_ID, sm), parent(parent), player(p)
     {
     nextWayPointIndex = 0;
+    }
+//TEE VALMIIKSI:
+Patrol::Patrol(const Patrol &other)
+    :State(other), parent(other.parent), player(other.player)
+    {
+    }
+PE::State* Patrol::clone() const
+    {
+    return (PE::State*)new Patrol(*this);
     }
 void Patrol::addWayPoint(const Vector2D &point)
     {
@@ -50,6 +63,14 @@ void Patrol::process()
 Attack::Attack(PE::StateMachine &sm, Enemy &parent, const Player &p)
     :State(ATTACK_ID, sm), parent(parent), player(p)
     {
+    }
+Attack::Attack(const Attack &other)
+    :State(other), parent(other.parent), player(other.player)
+    {
+    }
+PE::State* Attack::clone() const
+    {
+    return (PE::State*) new Attack(*this);
     }
 void Attack::process()
     {

@@ -13,6 +13,8 @@ class Player: public PE::Entity
     public:
     Player(double x = 0.0, double y = 0.0, const std::string &name = "player");
     Player(const Player &other);
+
+    PE::Entity* clone() const;
     };
 
 class Enemy: public PE::Ai
@@ -20,7 +22,9 @@ class Enemy: public PE::Ai
     public:
     Enemy(double x = 0.0, double y = 0.0, const std::string &name = "enemy");
     Enemy(const Enemy &other);
-    ~Enemy();
+
+    PE::Entity* clone() const;
+
     void initStateMachine(const Player &p);
     void process(double time);
     };

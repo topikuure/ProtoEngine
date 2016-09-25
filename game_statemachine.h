@@ -20,6 +20,9 @@ class Idle: public PE::State
 
     Idle(PE::StateMachine &sm, Enemy &parent);
     Idle(const Idle &other);
+
+    PE::State* clone() const;
+
     void process();
     };
 
@@ -33,6 +36,10 @@ class Patrol: public PE::State
     int nextWayPointIndex;
 
     Patrol(PE::StateMachine &sm, Enemy &parent, const Player &p);
+    Patrol(const Patrol &other);
+
+    PE::State* clone() const;
+
     void addWayPoint(const Vector2D &point);
     void process();
     };
@@ -44,6 +51,10 @@ class Attack: public PE::State
     const Player &player;
 
     Attack(PE::StateMachine &sm, Enemy &parent, const Player &p);
+    Attack(const Attack &other);
+
+    PE::State* clone() const;
+
     void process();
     };
 }

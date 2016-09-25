@@ -11,16 +11,29 @@ State::State(const State &other):
     id(other.id), stateMachine(other.stateMachine)
     {
     }
+State* State::clone() const
+    {
+    return new State(*this);
+    }
 
 StateMachine::StateMachine()
     :currentState(NULL)
     {
     }
-//Miten vector<State*> kopioiminen onnistuu?
 StateMachine::StateMachine(const StateMachine &other)
-    :states(states)
     {
-    currentState = other.currentState;
+    for(int i = 0; i < other.states.size(); ++i)
+        {
+        states.push_back(other.states[i]->clone());
+        }
+    for(int i = 0; i < states.size(); ++i)
+        {
+        if(other.currentState->id == states[i]->id)
+            {
+            currentState = states[i];
+            break;
+            }
+        }
     }
 StateMachine::~StateMachine()
     {
@@ -31,9 +44,9 @@ StateMachine::~StateMachine()
     states.clear();
     }
 
-void StateMachine::addState(State *s)
+void StateMachine::addState(const State &s)
     {
-    states.push_back(s);
+    states.push_back(s.clone());
     }
 void StateMachine::stop()
     {
